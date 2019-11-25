@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: example-deployment
+  namespace: demo
+spec:
+  selector:
+    matchLabels:
+      app: deploy-me
+  template:
+    metadata:
+      labels:
+        app: deploy-me
+    spec:
+      containers:
+      - name: busybox
+        image: busybox:1.25
+        command:
+          - /bin/sh
+          - -ec
+          - while sleep 1; do date ; done
